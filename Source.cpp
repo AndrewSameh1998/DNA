@@ -24,8 +24,5 @@ void main()
 	{
 		cout << "Error";
 	}
-	for (int i = 0; i < 1; i++)
-	{
-		cout << s << '\n';
-	}
+	cout << s << '\n';
 }
