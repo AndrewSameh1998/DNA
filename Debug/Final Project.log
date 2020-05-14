@@ -1,0 +1,3 @@
+﻿  Source.cpp
+D:\College\Semester 8\Distributed Computing\Final Project\Final Project\Source.cpp(10,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Final Project.vcxproj -> D:\College\Semester 8\Distributed Computing\Final Project\Final Project\Debug\Final Project.exe
