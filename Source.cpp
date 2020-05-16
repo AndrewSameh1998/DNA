@@ -6,8 +6,12 @@
 #include <Bits.h>
 
 using namespace std;
+
+void print(float freq[]);
+
 int x = 0;
 int y = 0;
+
 string readfile()
 {
 	string line;
@@ -288,6 +292,8 @@ void frequency(string* amino, int y)
 {
 	int Phe = 0, Leu = 0, Ser = 0, Tyr = 0, Stop = 0, Cys = 0, Trp = 0, Pro = 0, His = 0, Gin = 0, Arg = 0, Ile = 0, 
 		Met = 0, Thr = 0,Asn = 0, Lys = 0, Val = 0, Ala = 0, Asp = 0, Glu = 0, Gly = 0;
+	float freq_arr[21] = {};
+
 	for (int j = 0; j <= y; j++)
 	{
 		//cout << amino[j] << endl;
@@ -335,22 +341,22 @@ void frequency(string* amino, int y)
 		if (amino[j] == "Gly")
 			Gly++;
 	}
-	//Phe, Leu, Ser, Tyr, Stop, Cys, Trp, Pro, His, Gin, Arg, Ile, Met, Thr, Asn, Lys, Val, Ala, Asp, Glu, Gly
+	int amino_arr[] = { Phe, Leu, Ser, Tyr, Stop, Cys, Trp, Pro, His, Gin, Arg, Ile, Met, Thr, Asn, Lys, Val, Ala, Asp, Glu, Gly };
+	for (int i = 0; i < 21; i++)
+	{
+		freq_arr[i] = ((float)(amino_arr[i]) / (float)y) * 100;
+		//cout << freq_arr[i] << endl;
+	}
+	print(freq_arr);
+}
 
-	float PheF = ((float)(Phe) / (float)y) * 100, LeuF = ((float)(Leu) / (float)y) * 100, SerF = ((float)(Ser) / (float)y) * 100,
-		  TyrF = ((float)(Tyr) / (float)y) * 100, StopF = ((float)(Stop) / (float)y) * 100, CysF = ((float)(Cys) / (float)y) * 100,
-		  TrpF = ((float)(Trp) / (float)y) * 100, ProF = ((float)(Pro) / (float)y) * 100, HisF = ((float)(His) / (float)y) * 100,
-		  GinF = ((float)(Gin) / (float)y) * 100, ArgF = ((float)(Arg) / (float)y) * 100, IleF = ((float)(Ile) / (float)y) * 100,
-		  MetF = ((float)(Met) / (float)y) * 100, ThrF = ((float)(Thr) / (float)y) * 100, AsnF = ((float)(Asn) / (float)y) * 100,
-		  LysF = ((float)(Lys) / (float)y) * 100, ValF = ((float)(Val) / (float)y) * 100, AlaF = ((float)(Ala) / (float)y) * 100,
-		  AspF = ((float)(Asp) / (float)y) * 100, GluF = ((float)(Glu) / (float)y) * 100, GlyF = ((float)(Gly) / (float)y) * 100;
-	cout << PheF << endl << LeuF << endl << SerF << endl << TyrF << endl << StopF << endl << CysF <<endl
-		 << TrpF << endl << ProF << endl << HisF << endl << GinF << endl << ArgF << endl << IleF << endl << MetF << endl 
-		 << ThrF << endl << AsnF << endl << LysF << endl << ValF << endl << AlaF << endl << AspF << endl << GluF << endl
-		 << GlyF << endl;
-	float sum = PheF + LeuF + SerF + TyrF + StopF + CysF + TrpF + ProF + HisF + GinF + ArgF + IleF + MetF + ThrF + 
-		AsnF + LysF + ValF + AlaF + AspF + GluF + GlyF;
-	cout << sum << endl;
+void print(float freq[])
+{
+	string names[21] = { "Phe", "Leu", "Ser", "Tyr", "Stop", "Cys", "Trp", "Pro", "His", "Gin", "Arg", "Ile", "Met", "Thr", "Asn", "Lys", "Val", "Ala", "Asp", "Glu", "Gly" };
+	for (int i = 0; i < 21; i++)
+	{
+		cout << names[i] << " Amino Acid Frequency : " << freq[i] << endl;
+	}
 }
 
 void main()
