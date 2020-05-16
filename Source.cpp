@@ -4,8 +4,12 @@
 #include <cstring>
 #include <string>
 #include <Bits.h>
+#include <chrono>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
+using namespace std::chrono;
 
 void print(float freq[]);
 
@@ -293,7 +297,7 @@ void frequency(string* amino, int y)
 	int Phe = 0, Leu = 0, Ser = 0, Tyr = 0, Stop = 0, Cys = 0, Trp = 0, Pro = 0, His = 0, Gin = 0, Arg = 0, Ile = 0, 
 		Met = 0, Thr = 0,Asn = 0, Lys = 0, Val = 0, Ala = 0, Asp = 0, Glu = 0, Gly = 0;
 	float freq_arr[21] = {};
-
+	auto start = high_resolution_clock::now();
 	for (int j = 0; j <= y; j++)
 	{
 		//cout << amino[j] << endl;
@@ -341,6 +345,9 @@ void frequency(string* amino, int y)
 		if (amino[j] == "Gly")
 			Gly++;
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+	cout << "Time taken to check frequency : "<< duration.count() / 100000 << " Seconds" << endl;
 	int amino_arr[] = { Phe, Leu, Ser, Tyr, Stop, Cys, Trp, Pro, His, Gin, Arg, Ile, Met, Thr, Asn, Lys, Val, Ala, Asp, Glu, Gly };
 	for (int i = 0; i < 21; i++)
 	{
@@ -361,7 +368,6 @@ void print(float freq[])
 
 void main()
 {
-	
 	int size = 0;
 	char* c_p = new char[102248];
 	string* amino = new string[24600];
