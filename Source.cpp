@@ -11,7 +11,7 @@
 using namespace std;
 using namespace std::chrono;
 
-void print(float freq[]);
+void print(float freq[], float freq_p[]);
 
 int x = 0;
 int y = 0;
@@ -563,8 +563,10 @@ void frequency_parallel(string* amino, int y)
 	omp_set_num_threads(8);
 	int Phe = 0, Leu = 0, Ser = 0, Tyr = 0, Stop = 0, Cys = 0, Trp = 0, Pro = 0, His = 0, Gin = 0, Arg = 0, Ile = 0,
 		Met = 0, Thr = 0, Asn = 0, Lys = 0, Val = 0, Ala = 0, Asp = 0, Glu = 0, Gly = 0;
+
 	float freq_arr[21] = {};
-	
+	float freq_arr_percent[21] = {};
+
 	#pragma omp parallel for
 	for (int j = 0; j <= y; j++)
 	{
@@ -614,17 +616,21 @@ void frequency_parallel(string* amino, int y)
 	int amino_arr[] = { Phe, Leu, Ser, Tyr, Stop, Cys, Trp, Pro, His, Gin, Arg, Ile, Met, Thr, Asn, Lys, Val, Ala, Asp, Glu, Gly };
 	for (int i = 0; i < 21; i++)
 	{
-		freq_arr[i] = ((float)(amino_arr[i]) / (float)y) * 100;
-		//cout << freq_arr[i] << endl;
+		freq_arr[i] = ((float)(amino_arr[i]) / (float)y);
+		freq_arr_percent[i] = ((float)(amino_arr[i]) / (float)y) * 100;
+		//cout << freq_arr_percent[i] << endl;
 	}
-	print(freq_arr);
+	print(freq_arr,freq_arr_percent);
 }
 
 void frequency(string* amino, int y) 
 {
 	int Phe = 0, Leu = 0, Ser = 0, Tyr = 0, Stop = 0, Cys = 0, Trp = 0, Pro = 0, His = 0, Gin = 0, Arg = 0, Ile = 0, 
 		Met = 0, Thr = 0,Asn = 0, Lys = 0, Val = 0, Ala = 0, Asp = 0, Glu = 0, Gly = 0;
+
 	float freq_arr[21] = {};
+	float freq_arr_percent[21] = {};
+
 	for (int j = 0; j <= y; j++)
 	{
 		if (amino[j] == "Phe")
@@ -673,18 +679,20 @@ void frequency(string* amino, int y)
 	int amino_arr[] = { Phe, Leu, Ser, Tyr, Stop, Cys, Trp, Pro, His, Gin, Arg, Ile, Met, Thr, Asn, Lys, Val, Ala, Asp, Glu, Gly };
 	for (int i = 0; i < 21; i++)
 	{
-		freq_arr[i] = ((float)(amino_arr[i]) / (float)y) * 100;
-		//cout << freq_arr[i] << endl;
+		freq_arr[i] = (((float)(amino_arr[i]) / (float)y));
+		freq_arr_percent[i] = ((float)(amino_arr[i]) / (float)y) * 100;
+		//cout << freq_arr_percent[i] << endl;
 	}
-	print(freq_arr);
+	print(freq_arr,freq_arr_percent);
 }
 
-void print(float freq[])
+void print(float freq[], float freq_p[])
 {
 	string names[21] = { "Phe", "Leu", "Ser", "Tyr", "Stop", "Cys", "Trp", "Pro", "His", "Gin", "Arg", "Ile", "Met", "Thr", "Asn", "Lys", "Val", "Ala", "Asp", "Glu", "Gly" };
 	for (int i = 0; i < 21; i++)
 	{
-		cout << names[i] << " Amino Acid Frequency : " << freq[i] << endl;
+		cout << names[i] << " Amino Acid Frequency  : " << freq_p[i] << endl;
+		cout << names[i] << " Amino Acid Frequency Percentage : " << freq[i] << ' ' <<'%' << endl;
 	}
 }
 

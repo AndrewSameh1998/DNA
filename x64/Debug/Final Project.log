@@ -1,4 +1,4 @@
 ﻿  Source.cpp
 D:\College\Semester 8\Distributed Computing\Final Project\DNA\Source.cpp(44,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\College\Semester 8\Distributed Computing\Final Project\DNA\Source.cpp(708,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\College\Semester 8\Distributed Computing\Final Project\DNA\Source.cpp(716,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
   Final Project.vcxproj -> D:\College\Semester 8\Distributed Computing\Final Project\DNA\x64\Debug\Final Project.exe
